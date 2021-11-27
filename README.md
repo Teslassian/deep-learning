@@ -7,3 +7,5 @@ The specialization is subdivided into the following courses:
 - Structuring Machine Learning Projects
 - Convolutional Neural Networks
 - Sequence Models
+
+All machine learning models are implemented from scratch.
