@@ -1,0 +1,7 @@
+Paste this in the notebook and run the cell:
+!tar chzf bruh.tgz --exclude notebook_ex2.tgz *
+
+pip install ipython / jupyter
+pip install nbconvert
+
+ipython / jupyter nbconvert --to script bruh.ipynb

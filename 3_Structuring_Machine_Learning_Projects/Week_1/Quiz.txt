@@ -1,0 +1,65 @@
+1.
+	True
+
+
+2.
+	98, 9, 9
+
+
+3.
+	Acc Opt, Run & Mem Satis
+	
+	
+4.
+	9.5, 0.25, 0.25
+	
+
+5.
+	True
+
+
+6.
+	All
+	
+	
+7.
+	Insufficient
+
+
+8.
+	0.3%
+	
+	
+9.
+	Better than human, not better than bayes
+	
+
+10.
+	Dec Reg
+	Bigger model
+	
+
+11.
+	Overfit to dev set
+	Get bigger dev set
+
+
+12.
+	Harder to measure avoidable bias
+	Bayes < 0.05
+
+
+13.
+	Take both into account
+	Rethink metric
+
+
+14.
+	Synthesis
+	Reshuffle
+	
+	
+15.
+	Buy PC's
+	Limit iteration speed
+	x10

@@ -1,0 +1,3 @@
+Display only current folder in powershell:
+
+Function Prompt { "$( ( get-item $pwd ).Name )>" }
