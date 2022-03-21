@@ -1,50 +1,34 @@
-
-# coding: utf-8
-
-# In[1]:
-
-get_ipython().system('tar chzf notebook_ex2.tgz --exclude notebook_ex2.tgz *')
-
-
 # # Optimization Methods
 # 
-# Until now, you've always used Gradient Descent to update the parameters and minimize the cost. In this notebook, you will learn more advanced optimization methods that can speed up learning and perhaps even get you to a better final value for the cost function. Having a good optimization algorithm can be the difference between waiting days vs. just a few hours to get a good result. 
+# Until now, you've always used Gradient Descent to update the parameters and minimize the cost.
+# In this notebook, you will learn more advanced optimization methods that can speed up learning
+# and perhaps even get you to a better final value for the cost function. Having a good optimization
+# algorithm can be the difference between waiting days vs. just a few hours to get a good result. 
 # 
-# Gradient descent goes "downhill" on a cost function $J$. Think of it as trying to do this: 
-# <img src="images/cost.jpg" style="width:650px;height:300px;">
-# <caption><center> <u> **Figure 1** </u>: **Minimizing the cost is like finding the lowest point in a hilly landscape**<br> At each step of the training, you update your parameters following a certain direction to try to get to the lowest possible point. </center></caption>
-# 
-# **Notations**: As usual, $\frac{\partial J}{\partial a } = $ `da` for any variable `a`.
-# 
-# To get started, run the following code to import the libraries you will need.
-
-# ### <font color='darkblue'> Updates to Assignment <font>
-# 
-# #### If you were working on a previous version
-# * The current notebook filename is version "Optimization_methods_v1b". 
-# * You can find your work in the file directory as version "Optimization methods'.
-# * To see the file directory, click on the Coursera logo at the top left of the notebook.
+# Gradient descent goes "downhill" on a cost function J. Minimizing the cost is like finding the
+# lowest point in a hilly landscape. At each step of the training, you update your parameters 
+# following a certain direction to try to get to the lowest possible point.
 # 
 # #### List of Updates
-# * op_utils is now opt_utils_v1a.  Assertion statement in `initialize_parameters` is fixed.
-# * opt_utils_v1a: `compute_cost` function now accumulates total cost of the batch without taking the average (average is taken for entire epoch instead).
-# * In `model` function, the total cost per mini-batch is accumulated, and the average of the entire epoch is taken as the average cost. So the plot of the cost function over time is now a smooth downward curve instead of an oscillating curve.
-# * Print statements used to check each function are reformatted, and 'expected output` is reformatted to match the format of the print statements (for easier visual comparisons).
-
-# In[ ]:
+# op_utils is now opt_utils_v1a.  Assertion statement in `initialize_parameters` is fixed.
+# opt_utils_v1a: `compute_cost` function now accumulates total cost of the batch without
+#   taking the average (average is taken for entire epoch instead).
+# In `model` function, the total cost per mini-batch is accumulated, and the average of
+#   the entire epoch is taken as the average cost. So the plot of the cost function over time
+#   is now a smooth downward curve instead of an oscillating curve.
+# Print statements used to check each function are reformatted, and 'expected output` is
+#   reformatted to match the format of the print statements (for easier visual comparisons).
 
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.io
 import math
-import sklearn
 import sklearn.datasets
 
-from opt_utils_v1a import load_params_and_grads, initialize_parameters, forward_propagation, backward_propagation
-from opt_utils_v1a import compute_cost, predict, predict_dec, plot_decision_boundary, load_dataset
+from opt_utils_v1a import initialize_parameters, forward_propagation, backward_propagation,
+                         compute_cost, predict, predict_dec, plot_decision_boundary, load_dataset
 from testCases import *
 
-get_ipython().magic('matplotlib inline')
+# get_ipython().magic('matplotlib inline')
 plt.rcParams['figure.figsize'] = (7.0, 4.0) # set default size of plots
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] = 'gray'

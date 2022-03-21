@@ -3,9 +3,12 @@
 
 # # Deep Neural Network for Image Classification: Application
 #
-# When you finish this, you will have finished the last programming assignment of Week 4, and also the last programming assignment of this course!
+# When you finish this, you will have finished the last programming assignment of Week 4,
+# and also the last programming assignment of this course!
 #
-# You will use the functions you'd implemented in the previous assignment to build a deep network, and apply it to cat vs non-cat classification. Hopefully, you will see an improvement in accuracy relative to your previous logistic regression implementation.
+# You will use the functions you'd implemented in the previous assignment to build a deep network,
+# and apply it to cat vs non-cat classification. Hopefully, you will see an improvement in accuracy
+# relative to your previous logistic regression implementation.
 #
 # **After this assignment you will be able to:**
 # - Build and apply a deep neural network to supervised learning.
@@ -18,8 +21,10 @@
 # - [numpy](https://www.numpy.org/) is the fundamental package for scientific computing with Python.
 # - [matplotlib](http://matplotlib.org) is a library to plot graphs in Python.
 # - [h5py](http://www.h5py.org) is a common package to interact with a dataset that is stored on an H5 file.
-# - [PIL](http://www.pythonware.com/products/pil/) and [scipy](https://www.scipy.org/) are used here to test your model with your own picture at the end.
-# - dnn_app_utils provides the functions implemented in the "Building your Deep Neural Network: Step by Step" assignment to this notebook.
+# - [PIL](http://www.pythonware.com/products/pil/) and [scipy](https://www.scipy.org/) are used here to test 
+#   your model with your own picture at the end.
+# - dnn_app_utils provides the functions implemented in the "Building your Deep Neural Network: Step by Step"
+#   assignment to this notebook.
 # - np.random.seed(1) is used to keep all the random function calls consistent. It will help us grade your work.
 
 # In[ ]:
