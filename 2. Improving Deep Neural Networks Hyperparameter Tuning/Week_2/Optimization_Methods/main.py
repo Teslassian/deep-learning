@@ -43,6 +43,7 @@ plt.rcParams['image.cmap'] = 'gray'
 
 
 #----------------------------------------------------------------------------- 1 - Gradient Descent
+print('1 - Gradient Descent:')
 
 def update_parameters_with_gd(parameters, grads, learning_rate):
     '''
@@ -67,8 +68,8 @@ def update_parameters_with_gd(parameters, grads, learning_rate):
     # Update rule for each parameter
     for l in range(L):
         ### START CODE HERE ###
-        parameters[f'W{l+1}'] = parameters[f'W{l+1}'] - learning_rate * grads[f'W{l+1}']
-        parameters[f'b{l+1}'] = parameters[f'b{l+1}'] - learning_rate * grads[f'b{l+1}']
+        parameters[f'W{l+1}'] -= learning_rate * grads[f'dW{l+1}']
+        parameters[f'b{l+1}'] -= learning_rate * grads[f'db{l+1}']
         ### END CODE HERE ###
         
     return parameters
@@ -84,11 +85,12 @@ print('b1 =\n' + str(parameters['b1']))
 print('W2 =\n' + str(parameters['W2']))
 print('b2 =\n' + str(parameters['b2']))
 
-exit()
+
 
 #----------------------------------------------------------------------------- 2 - Mini-Batch Gradient Descent
+print('\n2 - Mini-Batch Gradient Descent:')
 
-def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
+def random_mini_batches(X, Y, mini_batch_size=64, seed=0):
     '''
     Creates a list of random minibatches from (X, Y)
     
@@ -114,20 +116,11 @@ def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
 
     # Step 2: Partition (shuffled_X, shuffled_Y). Minus the end case.
     # number of mini batches of size mini_batch_size in your partitionning
-    num_complete_minibatches = math.floor(m/mini_batch_size)
-    for k in range(0, num_complete_minibatches):
+    num_minibatches = math.ceil(m/mini_batch_size)
+    for k in range(0, num_minibatches):
         ### START CODE HERE ###
-        mini_batch_X = None
-        mini_batch_Y = None
-        ### END CODE HERE ###
-        mini_batch = (mini_batch_X, mini_batch_Y)
-        mini_batches.append(mini_batch)
-    
-    # Handling the end case (last mini-batch < mini_batch_size)
-    if m % mini_batch_size != 0:
-        ### START CODE HERE ###
-        mini_batch_X = None
-        mini_batch_Y = None
+        mini_batch_X = shuffled_X[:,k*mini_batch_size:k*mini_batch_size+mini_batch_size]
+        mini_batch_Y = shuffled_Y[:,k*mini_batch_size:k*mini_batch_size+mini_batch_size]
         ### END CODE HERE ###
         mini_batch = (mini_batch_X, mini_batch_Y)
         mini_batches.append(mini_batch)
@@ -151,6 +144,7 @@ print ('mini batch sanity check: ' + str(mini_batches[0][0][0][0:3]))
 
 
 #----------------------------------------------------------------------------- 3 - Momentum
+print('\n3 - Momentum:')
 
 def initialize_velocity(parameters):
     '''
@@ -175,8 +169,8 @@ def initialize_velocity(parameters):
     # Initialize velocity
     for l in range(L):
         ### START CODE HERE ###
-        v[f'dW{l+1}'] = None
-        v[f'db{l+1}'] = None
+        v[f'dW{l+1}'] = np.zeros((parameters[f'W{l+1}'].shape))
+        v[f'db{l+1}'] = np.zeros((parameters[f'b{l+1}'].shape))
         ### END CODE HERE ###
         
     return v
@@ -224,11 +218,11 @@ def update_parameters_with_momentum(parameters, grads, v, beta, learning_rate):
         
         ### START CODE HERE ###
         # compute velocities
-        v[f'dW{l+1}'] = None
-        v[f'db{l+1}'] = None
+        v[f'dW{l+1}'] = beta*v[f'dW{l+1}'] + (1-beta)*grads[f'dW{l+1}']
+        v[f'db{l+1}'] = beta*v[f'db{l+1}'] + (1-beta)*grads[f'db{l+1}']
         # update parameters
-        parameters[f'W{l+1}'] = None
-        parameters[f'b{l+1}'] = None
+        parameters[f'W{l+1}'] -= learning_rate*v[f'dW{l+1}']
+        parameters[f'b{l+1}'] -= learning_rate*v[f'db{l+1}']
         ### END CODE HERE ###
         
     return parameters, v
@@ -251,8 +245,9 @@ print('v[\'db2\'] = v' + str(v['db2']))
 
 
 #----------------------------------------------------------------------------- 4 - Adam
+print('\n4 - Adam:')
 
-def initialize_adam(parameters) :
+def initialize_adam(parameters):
     '''
     Initializes v and s as two python dictionaries with:
                 - keys: 'dW1', 'db1', ..., 'dWL', 'dbL' 
@@ -281,10 +276,10 @@ def initialize_adam(parameters) :
     # Initialize v, s. Input: 'parameters'. Outputs: 'v, s'.
     for l in range(L):
     ### START CODE HERE ###
-        v[f'dW{l+1}'] = None
-        v[f'db{l+1}'] = None
-        s[f'dW{l+1}'] = None
-        s[f'db{l+1}'] = None
+        v[f'dW{l+1}'] = np.zeros((parameters[f'W{l+1}'].shape))
+        v[f'db{l+1}'] = np.zeros((parameters[f'b{l+1}'].shape))
+        s[f'dW{l+1}'] = np.zeros((parameters[f'W{l+1}'].shape))
+        s[f'db{l+1}'] = np.zeros((parameters[f'b{l+1}'].shape))
     ### END CODE HERE ###
     
     return v, s
@@ -306,8 +301,8 @@ print('s[\'db2\'] = \n' + str(s['db2']))
 
 
 
-def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01,
-                                beta1 = 0.9, beta2 = 0.999,  epsilon = 1e-8):
+def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate=0.01,
+                                beta1=0.9, beta2=0.999,  epsilon=1e-8):
     '''
     Update parameters using Adam
     
@@ -342,33 +337,35 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01
     for l in range(L):
         # Moving average of the gradients. Inputs: 'v, grads, beta1'. Output: 'v'.
         ### START CODE HERE ###
-        v[f'dW{l+1}'] = None
-        v[f'db{l+1}'] = None
+        v[f'dW{l+1}'] = beta1*v[f'dW{l+1}'] + (1-beta1)*grads[f'dW{l+1}']
+        v[f'db{l+1}'] = beta1*v[f'db{l+1}'] + (1-beta1)*grads[f'db{l+1}']
         ### END CODE HERE ###
 
         # Compute bias-corrected first moment estimate. Inputs: 'v, beta1, t'. Output: 'v_corrected'.
         ### START CODE HERE ###
-        v_corrected[f'dW{l+1}'] = None
-        v_corrected[f'db{l+1}'] = None
+        v_corrected[f'dW{l+1}'] = v[f'dW{l+1}'] / (1-beta1)**t
+        v_corrected[f'db{l+1}'] = v[f'db{l+1}'] / (1-beta1)**t
         ### END CODE HERE ###
 
         # Moving average of the squared gradients. Inputs: 's, grads, beta2'. Output: 's'.
         ### START CODE HERE ###
-        s[f'dW{l+1}'] = None
-        s[f'db{l+1}'] = None
+        s[f'dW{l+1}'] = beta2*s[f'dW{l+1}'] + (1-beta2)*grads[f'dW{l+1}']**2
+        s[f'db{l+1}'] = beta2*s[f'db{l+1}'] + (1-beta2)*grads[f'db{l+1}']**2
         ### END CODE HERE ###
 
         # Compute bias-corrected second raw moment estimate. Inputs: 's, beta2, t'. Output: 's_corrected'.
         ### START CODE HERE ###
-        s_corrected[f'dW{l+1}'] = None
-        s_corrected[f'db{l+1}'] = None
+        s_corrected[f'dW{l+1}'] = s[f'dW{l+1}'] / (1-beta2)**t
+        s_corrected[f'db{l+1}'] = s[f'db{l+1}'] / (1-beta2)**t
         ### END CODE HERE ###
 
         # Update parameters. Inputs: 'parameters, learning_rate, v_corrected, s_corrected, epsilon'. Output: 'parameters'.
         ### START CODE HERE ###
-        parameters[f'W{l+1}'] = None
-        parameters[f'b{l+1}'] = None
+        parameters[f'W{l+1}'] -= learning_rate * v_corrected[f'dW{l+1}'] / (np.sqrt(s_corrected[f'dW{l+1}']) + epsilon)
+        parameters[f'b{l+1}'] -= learning_rate * v_corrected[f'db{l+1}'] / (np.sqrt(s_corrected[f'db{l+1}']) + epsilon)
         ### END CODE HERE ###
+
+        # TODO check parameters dict
 
     return parameters, v, s
 
@@ -394,6 +391,7 @@ print('s[\'db2\'] = \n' + str(s['db2']))
 
 
 #----------------------------------------------------------------------------- 5 - Model with different optimization algorithms
+print('\n5 - Model with different optimization algorithms:')
 
 train_X, train_Y = load_dataset()
 
