@@ -343,8 +343,8 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate=0.01,
 
         # Compute bias-corrected first moment estimate. Inputs: 'v, beta1, t'. Output: 'v_corrected'.
         ### START CODE HERE ###
-        v_corrected[f'dW{l+1}'] = v[f'dW{l+1}'] / (1-beta1)**t
-        v_corrected[f'db{l+1}'] = v[f'db{l+1}'] / (1-beta1)**t
+        v_corrected[f'dW{l+1}'] = v[f'dW{l+1}'] / (1-beta1**t)
+        v_corrected[f'db{l+1}'] = v[f'db{l+1}'] / (1-beta1**t)
         ### END CODE HERE ###
 
         # Moving average of the squared gradients. Inputs: 's, grads, beta2'. Output: 's'.
@@ -355,8 +355,8 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate=0.01,
 
         # Compute bias-corrected second raw moment estimate. Inputs: 's, beta2, t'. Output: 's_corrected'.
         ### START CODE HERE ###
-        s_corrected[f'dW{l+1}'] = s[f'dW{l+1}'] / (1-beta2)**t
-        s_corrected[f'db{l+1}'] = s[f'db{l+1}'] / (1-beta2)**t
+        s_corrected[f'dW{l+1}'] = s[f'dW{l+1}'] / (1-beta2**t)
+        s_corrected[f'db{l+1}'] = s[f'db{l+1}'] / (1-beta2**t)
         ### END CODE HERE ###
 
         # Update parameters. Inputs: 'parameters, learning_rate, v_corrected, s_corrected, epsilon'. Output: 'parameters'.
