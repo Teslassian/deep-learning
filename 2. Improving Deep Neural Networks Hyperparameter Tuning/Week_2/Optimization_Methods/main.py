@@ -49,16 +49,16 @@ def update_parameters_with_gd(parameters, grads, learning_rate):
     Update parameters using one step of gradient descent
     
     Arguments:
-        parameters -- python dictionary containing your parameters to be updated:
+        parameters : python dictionary containing your parameters to be updated:
                         parameters['W' + str(l)] = Wl
                         parameters['b' + str(l)] = bl
-        grads -- python dictionary containing your gradients to update each parameters:
+        grads : python dictionary containing your gradients to update each parameters:
                         grads['dW' + str(l)] = dWl
                         grads['db' + str(l)] = dbl
-        learning_rate -- the learning rate, scalar.
+        learning_rate : the learning rate, scalar.
     
     Returns:
-        parameters -- python dictionary containing your updated parameters 
+        parameters : python dictionary containing your updated parameters 
     """
     
     # Number of layers in the neural networks
@@ -78,6 +78,7 @@ def update_parameters_with_gd(parameters, grads, learning_rate):
 parameters, grads, learning_rate = update_parameters_with_gd_test_case()
 
 parameters = update_parameters_with_gd(parameters, grads, learning_rate)
+
 print("W1 =\n" + str(parameters["W1"]))
 print("b1 =\n" + str(parameters["b1"]))
 print("W2 =\n" + str(parameters["W2"]))
@@ -92,12 +93,12 @@ def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
     Creates a list of random minibatches from (X, Y)
     
     Arguments:
-    X -- input data, of shape (input size, number of examples)
-    Y -- true "label" vector (1 for blue dot / 0 for red dot), of shape (1, number of examples)
-    mini_batch_size -- size of the mini-batches, integer
+        X : input data, of shape (input size, number of examples)
+        Y : true "label" vector (1 for blue dot / 0 for red dot), of shape (1, number of examples)
+        mini_batch_size : size of the mini-batches, integer
     
     Returns:
-    mini_batches -- list of synchronous (mini_batch_X, mini_batch_Y)
+        mini_batches : list of synchronous (mini_batch_X, mini_batch_Y)
     """
     
     # To make your "random" minibatches the same as ours
@@ -138,6 +139,7 @@ def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
 X_assess, Y_assess, mini_batch_size = random_mini_batches_test_case()
 
 mini_batches = random_mini_batches(X_assess, Y_assess, mini_batch_size)
+
 print ("shape of the 1st mini_batch_X: " + str(mini_batches[0][0].shape))
 print ("shape of the 2nd mini_batch_X: " + str(mini_batches[1][0].shape))
 print ("shape of the 3rd mini_batch_X: " + str(mini_batches[2][0].shape))
@@ -156,14 +158,14 @@ def initialize_velocity(parameters):
                 - keys: "dW1", "db1", ..., "dWL", "dbL" 
                 - values: numpy arrays of zeros of the same shape as the corresponding gradients/parameters.
     Arguments:
-    parameters -- python dictionary containing your parameters.
-                    parameters['W' + str(l)] = Wl
-                    parameters['b' + str(l)] = bl
+        parameters : python dictionary containing your parameters.
+                        parameters['W' + str(l)] = Wl
+                        parameters['b' + str(l)] = bl
     
     Returns:
-    v -- python dictionary containing the current velocity.
-                    v['dW' + str(l)] = velocity of dWl
-                    v['db' + str(l)] = velocity of dbl
+        v : python dictionary containing the current velocity.
+                        v['dW' + str(l)] = velocity of dWl
+                        v['db' + str(l)] = velocity of dbl
     """
     
     # Number of layers in the neural networks
@@ -184,6 +186,7 @@ def initialize_velocity(parameters):
 parameters = initialize_velocity_test_case()
 
 v = initialize_velocity(parameters)
+
 print("v[\"dW1\"] =\n" + str(v["dW1"]))
 print("v[\"db1\"] =\n" + str(v["db1"]))
 print("v[\"dW2\"] =\n" + str(v["dW2"]))
@@ -196,21 +199,21 @@ def update_parameters_with_momentum(parameters, grads, v, beta, learning_rate):
     Update parameters using Momentum
     
     Arguments:
-    parameters -- python dictionary containing your parameters:
-                    parameters['W' + str(l)] = Wl
-                    parameters['b' + str(l)] = bl
-    grads -- python dictionary containing your gradients for each parameters:
-                    grads['dW' + str(l)] = dWl
-                    grads['db' + str(l)] = dbl
-    v -- python dictionary containing the current velocity:
-                    v['dW' + str(l)] = ...
-                    v['db' + str(l)] = ...
-    beta -- the momentum hyperparameter, scalar
-    learning_rate -- the learning rate, scalar
+        parameters : python dictionary containing your parameters:
+                        parameters['W' + str(l)] = Wl
+                        parameters['b' + str(l)] = bl
+        grads : python dictionary containing your gradients for each parameters:
+                        grads['dW' + str(l)] = dWl
+                        grads['db' + str(l)] = dbl
+        v : python dictionary containing the current velocity:
+                        v['dW' + str(l)] = ...
+                        v['db' + str(l)] = ...
+        beta : the momentum hyperparameter, scalar
+        learning_rate : the learning rate, scalar
     
     Returns:
-    parameters -- python dictionary containing your updated parameters 
-    v -- python dictionary containing your updated velocities
+        parameters : python dictionary containing your updated parameters 
+        v : python dictionary containing your updated velocities
     """
     
     # number of layers in the neural networks
@@ -235,6 +238,7 @@ def update_parameters_with_momentum(parameters, grads, v, beta, learning_rate):
 parameters, grads, v = update_parameters_with_momentum_test_case()
 
 parameters, v = update_parameters_with_momentum(parameters, grads, v, beta = 0.9, learning_rate = 0.01)
+
 print("W1 = \n" + str(parameters["W1"]))
 print("b1 = \n" + str(parameters["b1"]))
 print("W2 = \n" + str(parameters["W2"]))
@@ -255,17 +259,17 @@ def initialize_adam(parameters) :
                 - values: numpy arrays of zeros of the same shape as the corresponding gradients/parameters.
     
     Arguments:
-    parameters -- python dictionary containing your parameters.
-                    parameters["W" + str(l)] = Wl
-                    parameters["b" + str(l)] = bl
-    
+        parameters : python dictionary containing your parameters.
+                        parameters["W" + str(l)] = Wl
+                        parameters["b" + str(l)] = bl
+        
     Returns: 
-    v -- python dictionary that will contain the exponentially weighted average of the gradient.
-                    v["dW" + str(l)] = ...
-                    v["db" + str(l)] = ...
-    s -- python dictionary that will contain the exponentially weighted average of the squared gradient.
-                    s["dW" + str(l)] = ...
-                    s["db" + str(l)] = ...
+        v : python dictionary that will contain the exponentially weighted average of the gradient.
+                        v["dW" + str(l)] = ...
+                        v["db" + str(l)] = ...
+        s : python dictionary that will contain the exponentially weighted average of the squared gradient.
+                        s["dW" + str(l)] = ...
+                        s["db" + str(l)] = ...
 
     """
 
@@ -290,6 +294,7 @@ def initialize_adam(parameters) :
 parameters = initialize_adam_test_case()
 
 v, s = initialize_adam(parameters)
+
 print("v[\"dW1\"] = \n" + str(v["dW1"]))
 print("v[\"db1\"] = \n" + str(v["db1"]))
 print("v[\"dW2\"] = \n" + str(v["dW2"]))
@@ -307,23 +312,23 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01
     Update parameters using Adam
     
     Arguments:
-    parameters -- python dictionary containing your parameters:
-                    parameters['W' + str(l)] = Wl
-                    parameters['b' + str(l)] = bl
-    grads -- python dictionary containing your gradients for each parameters:
-                    grads['dW' + str(l)] = dWl
-                    grads['db' + str(l)] = dbl
-    v -- Adam variable, moving average of the first gradient, python dictionary
-    s -- Adam variable, moving average of the squared gradient, python dictionary
-    learning_rate -- the learning rate, scalar.
-    beta1 -- Exponential decay hyperparameter for the first moment estimates 
-    beta2 -- Exponential decay hyperparameter for the second moment estimates 
-    epsilon -- hyperparameter preventing division by zero in Adam updates
+        parameters : python dictionary containing your parameters:
+                        parameters['W' + str(l)] = Wl
+                        parameters['b' + str(l)] = bl
+        grads : python dictionary containing your gradients for each parameters:
+                        grads['dW' + str(l)] = dWl
+                        grads['db' + str(l)] = dbl
+        v : Adam variable, moving average of the first gradient, python dictionary
+        s : Adam variable, moving average of the squared gradient, python dictionary
+        learning_rate : the learning rate, scalar.
+        beta1 : Exponential decay hyperparameter for the first moment estimates 
+        beta2 : Exponential decay hyperparameter for the second moment estimates 
+        epsilon : hyperparameter preventing division by zero in Adam updates
 
     Returns:
-    parameters -- python dictionary containing your updated parameters 
-    v -- Adam variable, moving average of the first gradient, python dictionary
-    s -- Adam variable, moving average of the squared gradient, python dictionary
+        parameters : python dictionary containing your updated parameters 
+        v : Adam variable, moving average of the first gradient, python dictionary
+        s : Adam variable, moving average of the squared gradient, python dictionary
     """
     
     # number of layers in the neural networks
@@ -372,6 +377,7 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01
 parameters, grads, v, s = update_parameters_with_adam_test_case()
 
 parameters, v, s  = update_parameters_with_adam(parameters, grads, v, s, t = 2)
+
 print("W1 = \n" + str(parameters["W1"]))
 print("b1 = \n" + str(parameters["b1"]))
 print("W2 = \n" + str(parameters["W2"]))
@@ -393,26 +399,27 @@ train_X, train_Y = load_dataset()
 
 
 
-def model(X, Y, layers_dims, optimizer, learning_rate = 0.0007, mini_batch_size = 64, beta = 0.9,
-          beta1 = 0.9, beta2 = 0.999,  epsilon = 1e-8, num_epochs = 10000, print_cost = True):
+def model(X, Y, layers_dims, optimizer, learning_rate=0.0007, mini_batch_size=64, beta=0.9,
+          beta1=0.9, beta2=0.999, epsilon=1e-8, num_epochs=10000, print_cost=True):
     """
     3-layer neural network model which can be run in different optimizer modes.
+    TODO generalize to n layers
     
     Arguments:
-    X -- input data, of shape (2, number of examples)
-    Y -- true "label" vector (1 for blue dot / 0 for red dot), of shape (1, number of examples)
-    layers_dims -- python list, containing the size of each layer
-    learning_rate -- the learning rate, scalar.
-    mini_batch_size -- the size of a mini batch
-    beta -- Momentum hyperparameter
-    beta1 -- Exponential decay hyperparameter for the past gradients estimates 
-    beta2 -- Exponential decay hyperparameter for the past squared gradients estimates 
-    epsilon -- hyperparameter preventing division by zero in Adam updates
-    num_epochs -- number of epochs
-    print_cost -- True to print the cost every 1000 epochs
+        X : input data, of shape (2, number of examples)
+        Y : true "label" vector (1 for blue dot / 0 for red dot), of shape (1, number of examples)
+        layers_dims : python list, containing the size of each layer
+        learning_rate : the learning rate, scalar.
+        mini_batch_size : the size of a mini batch
+        beta : Momentum hyperparameter
+        beta1 : Exponential decay hyperparameter for the past gradients estimates 
+        beta2 : Exponential decay hyperparameter for the past squared gradients estimates 
+        epsilon : hyperparameter preventing division by zero in Adam updates
+        num_epochs : number of epochs
+        print_cost : True to print the cost every 1000 epochs
 
     Returns:
-    parameters -- python dictionary containing your updated parameters 
+        parameters : python dictionary containing your updated parameters 
     """
 
     # number of layers in the neural networks
@@ -439,7 +446,6 @@ def model(X, Y, layers_dims, optimizer, learning_rate = 0.0007, mini_batch_size 
     
     # Optimization loop
     for i in range(num_epochs):
-        
         # Define the random minibatches. We increment the seed to reshuffle differently the dataset after each epoch
         seed = seed + 1
         minibatches = random_mini_batches(X, Y, mini_batch_size, seed)
@@ -465,8 +471,8 @@ def model(X, Y, layers_dims, optimizer, learning_rate = 0.0007, mini_batch_size 
                 parameters, v = update_parameters_with_momentum(parameters, grads, v, beta, learning_rate)
             elif optimizer == "adam":
                 t = t + 1 # Adam counter
-                parameters, v, s = update_parameters_with_adam(parameters, grads, v, s,
-                                                               t, learning_rate, beta1, beta2,  epsilon)
+                parameters, v, s = update_parameters_with_adam(parameters, grads, v, s, t, learning_rate, beta1, beta2,  epsilon)
+        
         cost_avg = cost_total / m
         
         # Print the cost every 1000 epoch
