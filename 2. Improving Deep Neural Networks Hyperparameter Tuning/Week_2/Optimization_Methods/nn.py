@@ -2,8 +2,6 @@
 Defines a neural network.
 '''
 
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io
@@ -81,7 +79,8 @@ def initialize_parameters(layer_dims):
     
     np.random.seed(3)
     parameters = {}
-    L = len(layer_dims) # number of layers in the network
+    # number of layers in the network
+    L = len(layer_dims)
 
     for l in range(1, L):
         parameters['W' + str(l)] = np.random.randn(layer_dims[l], layer_dims[l-1])*  np.sqrt(2 / layer_dims[l-1])
