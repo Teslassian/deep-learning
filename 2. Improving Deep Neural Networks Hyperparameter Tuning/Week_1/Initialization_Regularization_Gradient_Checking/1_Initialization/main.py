@@ -13,7 +13,7 @@ plt.rcParams['image.cmap'] = 'gray'
 train_X, train_Y, test_X, test_Y = load_dataset(train_X)
 
 def model(X, Y, learning_rate=0.01, num_iterations=15000, print_cost=True, initialization="he"):
-    """
+    '''
     Implements a three-layer neural network: LINEAR->RELU->LINEAR->RELU->LINEAR->SIGMOID.
 
     Arguments:
@@ -26,7 +26,7 @@ def model(X, Y, learning_rate=0.01, num_iterations=15000, print_cost=True, initi
 
     Returns:
     parameters -- parameters learnt by the model
-    """
+    '''
 
     grads = {}
     costs = []      # to track the loss

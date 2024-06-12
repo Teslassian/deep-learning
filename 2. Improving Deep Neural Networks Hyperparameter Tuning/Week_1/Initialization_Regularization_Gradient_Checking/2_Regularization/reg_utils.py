@@ -7,7 +7,7 @@ import sklearn.linear_model
 import scipy.io
 
 def sigmoid(x):
-    """
+    '''
     Compute the sigmoid of x
 
     Arguments:
@@ -15,12 +15,12 @@ def sigmoid(x):
 
     Return:
     s -- sigmoid(x)
-    """
+    '''
     s = 1/(1+np.exp(-x))
     return s
 
 def relu(x):
-    """
+    '''
     Compute the relu of x
 
     Arguments:
@@ -28,7 +28,7 @@ def relu(x):
 
     Return:
     s -- relu(x)
-    """
+    '''
     s = np.maximum(0,x)
     
     return s
@@ -57,7 +57,7 @@ def load_planar_dataset(seed):
     return X, Y
 
 def initialize_parameters(layer_dims):
-    """
+    '''
     Arguments:
     layer_dims -- python array (list) containing the dimensions of each layer in our network
     
@@ -72,7 +72,7 @@ def initialize_parameters(layer_dims):
     - For example: the layer_dims for the "Planar Data classification model" would have been [2,2,1]. 
     This means W1's shape was (2,2), b1 was (1,2), W2 was (2,1) and b2 was (1,1). Now you have to generalize it!
     - In the for loop, use parameters['W' + str(l)] to access Wl, where l is the iterative integer.
-    """
+    '''
     
     np.random.seed(3)
     parameters = {}
@@ -89,7 +89,7 @@ def initialize_parameters(layer_dims):
     return parameters
 
 def forward_propagation(X, parameters):
-    """
+    '''
     Implements the forward propagation (and computes the loss) presented in Figure 2.
     
     Arguments:
@@ -104,7 +104,7 @@ def forward_propagation(X, parameters):
     
     Returns:
     loss -- the loss function (vanilla logistic loss)
-    """
+    '''
         
     # retrieve parameters
     W1 = parameters["W1"]
@@ -127,7 +127,7 @@ def forward_propagation(X, parameters):
     return A3, cache
 
 def backward_propagation(X, Y, cache):
-    """
+    '''
     Implement the backward propagation presented in figure 2.
     
     Arguments:
@@ -137,7 +137,7 @@ def backward_propagation(X, Y, cache):
     
     Returns:
     gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables
-    """
+    '''
     m = X.shape[1]
     (Z1, A1, W1, b1, Z2, A2, W2, b2, Z3, A3, W3, b3) = cache
     
@@ -162,7 +162,7 @@ def backward_propagation(X, Y, cache):
     return gradients
 
 def update_parameters(parameters, grads, learning_rate):
-    """
+    '''
     Update parameters using gradient descent
     
     Arguments:
@@ -176,7 +176,7 @@ def update_parameters(parameters, grads, learning_rate):
     
     Returns:
     parameters -- python dictionary containing your updated parameters 
-    """
+    '''
     
     n = len(parameters) // 2 # number of layers in the neural networks
 
@@ -188,7 +188,7 @@ def update_parameters(parameters, grads, learning_rate):
     return parameters
 
 def predict(X, y, parameters):
-    """
+    '''
     This function is used to predict the results of a  n-layer neural network.
     
     Arguments:
@@ -197,10 +197,10 @@ def predict(X, y, parameters):
     
     Returns:
     p -- predictions for the given dataset X
-    """
+    '''
     
     m = X.shape[1]
-    p = np.zeros((1,m), dtype = np.int)
+    p = np.zeros((1,m), dtype = int)
     
     # Forward propagation
     a3, caches = forward_propagation(X, parameters)
@@ -221,7 +221,7 @@ def predict(X, y, parameters):
     return p
 
 def compute_cost(a3, Y):
-    """
+    '''
     Implement the cost function
     
     Arguments:
@@ -230,7 +230,7 @@ def compute_cost(a3, Y):
     
     Returns:
     cost - value of the cost function
-    """
+    '''
     m = Y.shape[1]
     
     logprobs = np.multiply(-np.log(a3),Y) + np.multiply(-np.log(1 - a3), 1 - Y)
@@ -262,7 +262,7 @@ def load_dataset():
 
 
 def predict_dec(parameters, X):
-    """
+    '''
     Used for plotting decision boundary.
     
     Arguments:
@@ -271,7 +271,7 @@ def predict_dec(parameters, X):
     
     Returns
     predictions -- vector of predictions of our model (red: 0 / blue: 1)
-    """
+    '''
     
     # Predict using forward propagation and a classification threshold of 0.5
     a3, cache = forward_propagation(X, parameters)

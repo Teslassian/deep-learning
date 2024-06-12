@@ -2,13 +2,13 @@ import numpy as np
 
 def linear_forward_test_case():
     np.random.seed(1)
-    """
+    '''
     X = np.array([[-1.02387576, 1.12397796],
  [-1.62328545, 0.64667545],
  [-1.74314104, -0.59664964]])
     W = np.array([[ 0.74505627, 1.97611078, -1.24412333]])
     b = np.array([[1]])
-    """
+    '''
     A = np.random.randn(3,2)
     W = np.random.randn(1,3)
     b = np.random.randn(1,1)
@@ -16,13 +16,13 @@ def linear_forward_test_case():
     return A, W, b
 
 def linear_activation_forward_test_case():
-    """
+    '''
     X = np.array([[-1.02387576, 1.12397796],
  [-1.62328545, 0.64667545],
  [-1.74314104, -0.59664964]])
     W = np.array([[ 0.74505627, 1.97611078, -1.24412333]])
     b = 5
-    """
+    '''
     np.random.seed(2)
     A_prev = np.random.randn(3,2)
     W = np.random.randn(1,3)
@@ -30,7 +30,7 @@ def linear_activation_forward_test_case():
     return A_prev, W, b
 
 def L_model_forward_test_case():
-    """
+    '''
     X = np.array([[-1.02387576, 1.12397796],
  [-1.62328545, 0.64667545],
  [-1.74314104, -0.59664964]])
@@ -40,7 +40,7 @@ def L_model_forward_test_case():
  'b1': np.array([[ 0.],
         [ 0.]]),
  'b2': np.array([[ 0.]])}
-    """
+    '''
     np.random.seed(1)
     X = np.random.randn(4,2)
     W1 = np.random.randn(3,4)
@@ -61,11 +61,11 @@ def compute_cost_test_case():
     return Y, aL
 
 def linear_backward_test_case():
-    """
+    '''
     z, linear_cache = (np.array([[-0.8019545 ,  3.85763489]]), (np.array([[-1.02387576,  1.12397796],
        [-1.62328545,  0.64667545],
        [-1.74314104, -0.59664964]]), np.array([[ 0.74505627,  1.97611078, -1.24412333]]), np.array([[1]]))
-    """
+    '''
     np.random.seed(1)
     dZ = np.random.randn(3,4)
     A = np.random.randn(5,4)
@@ -75,9 +75,9 @@ def linear_backward_test_case():
     return dZ, linear_cache
 
 def linear_activation_backward_test_case():
-    """
+    '''
     aL, linear_activation_cache = (np.array([[ 3.1980455 ,  7.85763489]]), ((np.array([[-1.02387576,  1.12397796], [-1.62328545,  0.64667545], [-1.74314104, -0.59664964]]), np.array([[ 0.74505627,  1.97611078, -1.24412333]]), 5), np.array([[ 3.1980455 ,  7.85763489]])))
-    """
+    '''
     np.random.seed(2)
     dA = np.random.randn(1,2)
     A = np.random.randn(3,2)
@@ -91,7 +91,7 @@ def linear_activation_backward_test_case():
     return dA, linear_activation_cache
 
 def L_model_backward_test_case():
-    """
+    '''
     X = np.random.rand(3,2)
     Y = np.array([[1, 1]])
     parameters = {'W1': np.array([[ 1.78862847,  0.43650985,  0.09649747]]), 'b1': np.array([[ 0.]])}
@@ -102,7 +102,7 @@ def L_model_backward_test_case():
     np.array([[ 1.78862847,  0.43650985,  0.09649747]]),
     np.array([[ 0.]])),
    np.array([[ 0.41791293,  1.91720367]]))])
-   """
+   '''
     np.random.seed(3)
     AL = np.random.randn(1, 2)
     Y = np.array([[1, 0]])
@@ -124,7 +124,7 @@ def L_model_backward_test_case():
     return AL, Y, caches
 
 def update_parameters_test_case():
-    """
+    '''
     parameters = {'W1': np.array([[ 1.78862847,  0.43650985,  0.09649747],
         [-1.8634927 , -0.2773882 , -0.35475898],
         [-0.08274148, -0.62700068, -0.04381817],
@@ -164,7 +164,7 @@ def update_parameters_test_case():
  'db1': 0.75937676204411464,
  'db2': 0.86163759922811056,
  'db3': -0.84161956022334572}
-    """
+    '''
     np.random.seed(2)
     W1 = np.random.randn(3,4)
     b1 = np.random.randn(3,1)

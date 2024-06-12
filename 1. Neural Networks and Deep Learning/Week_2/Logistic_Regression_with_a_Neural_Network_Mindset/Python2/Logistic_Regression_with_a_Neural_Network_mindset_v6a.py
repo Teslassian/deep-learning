@@ -252,7 +252,7 @@ test_set_x = test_set_x_flatten/255.
 # GRADED FUNCTION: sigmoid
 
 def sigmoid(z):
-    """
+    '''
     Compute the sigmoid of z
 
     Arguments:
@@ -260,7 +260,7 @@ def sigmoid(z):
 
     Return:
     s -- sigmoid(z)
-    """
+    '''
 
     ### START CODE HERE ### (≈ 1 line of code)
     s = None
@@ -294,7 +294,7 @@ print ("sigmoid([0, 2]) = " + str(sigmoid(np.array([0,2]))))
 # GRADED FUNCTION: initialize_with_zeros
 
 def initialize_with_zeros(dim):
-    """
+    '''
     This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.
 
     Argument:
@@ -303,7 +303,7 @@ def initialize_with_zeros(dim):
     Returns:
     w -- initialized vector of shape (dim, 1)
     b -- initialized scalar (corresponds to the bias)
-    """
+    '''
 
     ### START CODE HERE ### (≈ 1 line of code)
     w = None
@@ -366,7 +366,7 @@ print ("b = " + str(b))
 # GRADED FUNCTION: propagate
 
 def propagate(w, b, X, Y):
-    """
+    '''
     Implement the cost function and its gradient for the propagation explained above
 
     Arguments:
@@ -382,7 +382,7 @@ def propagate(w, b, X, Y):
 
     Tips:
     - Write your code step by step for the propagation. np.log(), np.dot()
-    """
+    '''
 
     m = X.shape[1]
 
@@ -451,7 +451,7 @@ print ("cost = " + str(cost))
 # GRADED FUNCTION: optimize
 
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost = False):
-    """
+    '''
     This function optimizes w and b by running a gradient descent algorithm
 
     Arguments:
@@ -472,7 +472,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost = False):
     You basically need to write down two steps and iterate through them:
         1) Calculate the cost and the gradient for the current parameters. Use propagate().
         2) Update the parameters using gradient descent rule for w and b.
-    """
+    '''
 
     costs = []
 
@@ -640,7 +640,7 @@ print ("predictions = " + str(predict(w, b, X)))
 # GRADED FUNCTION: model
 
 def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate = 0.5, print_cost = False):
-    """
+    '''
     Builds the logistic regression model by calling the function you've implemented previously
 
     Arguments:
@@ -654,7 +654,7 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
 
     Returns:
     d -- dictionary containing information about the model.
-    """
+    '''
 
     ### START CODE HERE ###
 

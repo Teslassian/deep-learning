@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import h5py
 
 def sigmoid(Z):
-    """
+    '''
     Implements the sigmoid activation in numpy
 
     Arguments:
@@ -12,7 +12,7 @@ def sigmoid(Z):
     Returns:
     A -- output of sigmoid(z), same shape as Z
     cache -- returns Z as well, useful during backpropagation
-    """
+    '''
 
     A = 1/(1+np.exp(-Z))
     cache = Z
@@ -20,7 +20,7 @@ def sigmoid(Z):
     return A, cache
 
 def relu(Z):
-    """
+    '''
     Implement the RELU function.
 
     Arguments:
@@ -29,7 +29,7 @@ def relu(Z):
     Returns:
     A -- Post-activation parameter, of the same shape as Z
     cache -- a python dictionary containing "A" ; stored for computing the backward pass efficiently
-    """
+    '''
 
     A = np.maximum(0,Z)
 
@@ -39,7 +39,7 @@ def relu(Z):
     return A, cache
 
 def relu_backward(dA, cache):
-    """
+    '''
     Implement the backward propagation for a single RELU unit.
 
     Arguments:
@@ -48,7 +48,7 @@ def relu_backward(dA, cache):
 
     Returns:
     dZ -- Gradient of the cost with respect to Z
-    """
+    '''
 
     Z = cache
     dZ = np.array(dA, copy=True) # just converting dz to a correct object.
@@ -61,7 +61,7 @@ def relu_backward(dA, cache):
     return dZ
 
 def sigmoid_backward(dA, cache):
-    """
+    '''
     Implement the backward propagation for a single SIGMOID unit.
 
     Arguments:
@@ -70,7 +70,7 @@ def sigmoid_backward(dA, cache):
 
     Returns:
     dZ -- Gradient of the cost with respect to Z
-    """
+    '''
 
     Z = cache
 
@@ -100,7 +100,7 @@ def load_data():
     return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes
 
 def initialize_parameters(n_x, n_h, n_y):
-    """
+    '''
     Argument:
     n_x -- size of the input layer
     n_h -- size of the hidden layer
@@ -112,7 +112,7 @@ def initialize_parameters(n_x, n_h, n_y):
                     b1 -- bias vector of shape (n_h, 1)
                     W2 -- weight matrix of shape (n_y, n_h)
                     b2 -- bias vector of shape (n_y, 1)
-    """
+    '''
 
     np.random.seed(1)
 
@@ -134,7 +134,7 @@ def initialize_parameters(n_x, n_h, n_y):
     return parameters
 
 def initialize_parameters_deep(layer_dims):
-    """
+    '''
     Arguments:
     layer_dims -- python array (list) containing the dimensions of each layer in our network
 
@@ -142,7 +142,7 @@ def initialize_parameters_deep(layer_dims):
     parameters -- python dictionary containing your parameters "W1", "b1", ..., "WL", "bL":
                     Wl -- weight matrix of shape (layer_dims[l], layer_dims[l-1])
                     bl -- bias vector of shape (layer_dims[l], 1)
-    """
+    '''
 
     np.random.seed(1)
     parameters = {}
@@ -159,7 +159,7 @@ def initialize_parameters_deep(layer_dims):
     return parameters
 
 def linear_forward(A, W, b):
-    """
+    '''
     Implement the linear part of a layer's forward propagation.
 
     Arguments:
@@ -170,7 +170,7 @@ def linear_forward(A, W, b):
     Returns:
     Z -- the input of the activation function, also called pre-activation parameter
     cache -- a python dictionary containing "A", "W" and "b" ; stored for computing the backward pass efficiently
-    """
+    '''
 
     Z = W.dot(A) + b
 
@@ -180,7 +180,7 @@ def linear_forward(A, W, b):
     return Z, cache
 
 def linear_activation_forward(A_prev, W, b, activation):
-    """
+    '''
     Implement the forward propagation for the LINEAR->ACTIVATION layer
 
     Arguments:
@@ -193,7 +193,7 @@ def linear_activation_forward(A_prev, W, b, activation):
     A -- the output of the activation function, also called the post-activation value
     cache -- a python dictionary containing "linear_cache" and "activation_cache";
              stored for computing the backward pass efficiently
-    """
+    '''
 
     if activation == "sigmoid":
         # Inputs: "A_prev, W, b". Outputs: "A, activation_cache".
@@ -211,7 +211,7 @@ def linear_activation_forward(A_prev, W, b, activation):
     return A, cache
 
 def L_model_forward(X, parameters):
-    """
+    '''
     Implement forward propagation for the [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID computation
 
     Arguments:
@@ -223,7 +223,7 @@ def L_model_forward(X, parameters):
     caches -- list of caches containing:
                 every cache of linear_relu_forward() (there are L-1 of them, indexed from 0 to L-2)
                 the cache of linear_sigmoid_forward() (there is one, indexed L-1)
-    """
+    '''
 
     caches = []
     A = X
@@ -244,7 +244,7 @@ def L_model_forward(X, parameters):
     return AL, caches
 
 def compute_cost(AL, Y):
-    """
+    '''
     Implement the cost function defined by equation (7).
 
     Arguments:
@@ -253,7 +253,7 @@ def compute_cost(AL, Y):
 
     Returns:
     cost -- cross-entropy cost
-    """
+    '''
 
     m = Y.shape[1]
 
@@ -266,7 +266,7 @@ def compute_cost(AL, Y):
     return cost
 
 def linear_backward(dZ, cache):
-    """
+    '''
     Implement the linear portion of backward propagation for a single layer (layer l)
 
     Arguments:
@@ -277,7 +277,7 @@ def linear_backward(dZ, cache):
     dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev
     dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     db -- Gradient of the cost with respect to b (current layer l), same shape as b
-    """
+    '''
     A_prev, W, b = cache
     m = A_prev.shape[1]
 
@@ -292,7 +292,7 @@ def linear_backward(dZ, cache):
     return dA_prev, dW, db
 
 def linear_activation_backward(dA, cache, activation):
-    """
+    '''
     Implement the backward propagation for the LINEAR->ACTIVATION layer.
 
     Arguments:
@@ -304,7 +304,7 @@ def linear_activation_backward(dA, cache, activation):
     dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev
     dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     db -- Gradient of the cost with respect to b (current layer l), same shape as b
-    """
+    '''
     linear_cache, activation_cache = cache
 
     if activation == "relu":
@@ -318,7 +318,7 @@ def linear_activation_backward(dA, cache, activation):
     return dA_prev, dW, db
 
 def L_model_backward(AL, Y, caches):
-    """
+    '''
     Implement the backward propagation for the [LINEAR->RELU] * (L-1) -> LINEAR -> SIGMOID group
 
     Arguments:
@@ -333,7 +333,7 @@ def L_model_backward(AL, Y, caches):
              grads["dA" + str(l)] = ...
              grads["dW" + str(l)] = ...
              grads["db" + str(l)] = ...
-    """
+    '''
     grads = {}
     L = len(caches) # the number of layers
     m = AL.shape[1]
@@ -357,7 +357,7 @@ def L_model_backward(AL, Y, caches):
     return grads
 
 def update_parameters(parameters, grads, learning_rate):
-    """
+    '''
     Update parameters using gradient descent
 
     Arguments:
@@ -368,7 +368,7 @@ def update_parameters(parameters, grads, learning_rate):
     parameters -- python dictionary containing your updated parameters
                   parameters["W" + str(l)] = ...
                   parameters["b" + str(l)] = ...
-    """
+    '''
 
     L = len(parameters) // 2 # number of layers in the neural network
 
@@ -380,7 +380,7 @@ def update_parameters(parameters, grads, learning_rate):
     return parameters
 
 def predict(X, y, parameters):
-    """
+    '''
     This function is used to predict the results of a  L-layer neural network.
 
     Arguments:
@@ -389,7 +389,7 @@ def predict(X, y, parameters):
 
     Returns:
     p -- predictions for the given dataset X
-    """
+    '''
 
     m = X.shape[1]
     n = len(parameters) // 2 # number of layers in the neural network
@@ -414,12 +414,12 @@ def predict(X, y, parameters):
     return p
 
 def print_mislabeled_images(classes, X, y, p):
-    """
+    '''
     Plots images where predictions and truth were different.
     X -- dataset
     y -- true labels
     p -- predictions
-    """
+    '''
     a = p + y
     mislabeled_indices = np.asarray(np.where(a == 1))
     plt.rcParams['figure.figsize'] = (40.0, 40.0) # set default size of plots

@@ -206,7 +206,7 @@ layers_dims = (n_x, n_h, n_y)
 # GRADED FUNCTION: two_layer_model
 
 def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 3000, print_cost=False):
-    """
+    '''
     Implements a two-layer neural network: LINEAR->RELU->LINEAR->SIGMOID.
 
     Arguments:
@@ -219,7 +219,7 @@ def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 
 
     Returns:
     parameters -- a dictionary containing W1, W2, b1, and b2
-    """
+    '''
 
     np.random.seed(1)
     grads = {}
@@ -395,7 +395,7 @@ layers_dims = [12288, 20, 7, 5, 1] #  4-layer model
 # GRADED FUNCTION: L_layer_model
 
 def L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 3000, print_cost=False):#lr was 0.009
-    """
+    '''
     Implements a L-layer neural network: [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID.
 
     Arguments:
@@ -408,7 +408,7 @@ def L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 30
 
     Returns:
     parameters -- parameters learnt by the model. They can then be used to predict.
-    """
+    '''
 
     np.random.seed(1)
     costs = []                         # keep track of cost

@@ -49,7 +49,7 @@ print("\n")
 
 # Function to calculate the sigmoid function
 def sigmoid(z):
-    """
+    '''
     Compute the sigmoid of z
 
     Arguments:
@@ -57,7 +57,7 @@ def sigmoid(z):
 
     Return:
     s -- sigmoid(z)
-    """
+    '''
 
     s = 1/(1+np.exp(-z))
     return s
@@ -66,7 +66,7 @@ def sigmoid(z):
 
 # Function to initialize parameters
 def initialize_with_zeros(dim):
-    """
+    '''
     This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.
 
     Argument:
@@ -75,7 +75,7 @@ def initialize_with_zeros(dim):
     Returns:
     w -- initialized vector of shape (dim, 1)
     b -- initialized scalar (corresponds to the bias)
-    """
+    '''
 
     w = np.zeros((dim,1))
     b = 0
@@ -92,7 +92,7 @@ def initialize_with_zeros(dim):
 
 # Function for forward and backward propagation
 def propagate(w, b, X, Y):
-    """
+    '''
     Implement the cost function and its gradient for the propagation explained above
 
     Arguments:
@@ -108,7 +108,7 @@ def propagate(w, b, X, Y):
 
     Tips:
     - Write your code step by step for the propagation. np.log(), np.dot()
-    """
+    '''
 
     m = X.shape[1]
 
@@ -138,7 +138,7 @@ def propagate(w, b, X, Y):
 
 # Function for optimization
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):
-    """
+    '''
     This function optimizes w and b by running a gradient descent algorithm
 
     Arguments:
@@ -159,7 +159,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):
     You basically need to write down two steps and iterate through them:
         1) Calculate the cost and the gradient for the current parameters. Use propagate().
         2) Update the parameters using gradient descent rule for w and b.
-    """
+    '''
 
     costs = []
 
@@ -231,7 +231,7 @@ def predict(w, b, X):
 
 # Function to merge all functions into a model
 def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0.5, print_cost=False):
-    """
+    '''
     Builds the logistic regression model by calling the function you've implemented previously
 
     Arguments:
@@ -245,7 +245,7 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
 
     Returns:
     d -- dictionary containing information about the model.
-    """
+    '''
 
     # Parameter initialization
     w, b = initialize_with_zeros(X_test.shape[0])

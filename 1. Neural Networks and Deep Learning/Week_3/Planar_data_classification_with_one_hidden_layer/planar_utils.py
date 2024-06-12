@@ -21,7 +21,7 @@ def plot_decision_boundary(model, X, y):
     plt.scatter(X[0, :], X[1, :], c=y, cmap=plt.cm.Spectral)
     
 def sigmoid(x):
-    """
+    '''
     Compute the sigmoid of x
 
     Arguments:
@@ -29,7 +29,7 @@ def sigmoid(x):
 
     Return:
     s -- sigmoid(x)
-    """
+    '''
     s = 1/(1+np.exp(-x))
     return s
 

@@ -53,7 +53,7 @@ plt.rcParams['image.cmap'] = 'gray'
 # GRADED FUNCTION: update_parameters_with_gd
 
 def update_parameters_with_gd(parameters, grads, learning_rate):
-    """
+    '''
     Update parameters using one step of gradient descent
     
     Arguments:
@@ -67,7 +67,7 @@ def update_parameters_with_gd(parameters, grads, learning_rate):
     
     Returns:
     parameters -- python dictionary containing your updated parameters 
-    """
+    '''
 
     L = len(parameters) // 2 # number of layers in the neural networks
 
@@ -198,7 +198,7 @@ print("b2 =\n" + str(parameters["b2"]))
 # GRADED FUNCTION: random_mini_batches
 
 def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
-    """
+    '''
     Creates a list of random minibatches from (X, Y)
     
     Arguments:
@@ -208,7 +208,7 @@ def random_mini_batches(X, Y, mini_batch_size = 64, seed = 0):
     
     Returns:
     mini_batches -- list of synchronous (mini_batch_X, mini_batch_Y)
-    """
+    '''
     
     np.random.seed(seed)            # To make your "random" minibatches the same as ours
     m = X.shape[1]                  # number of training examples
@@ -319,7 +319,7 @@ print ("mini batch sanity check: " + str(mini_batches[0][0][0][0:3]))
 # GRADED FUNCTION: initialize_velocity
 
 def initialize_velocity(parameters):
-    """
+    '''
     Initializes the velocity as a python dictionary with:
                 - keys: "dW1", "db1", ..., "dWL", "dbL" 
                 - values: numpy arrays of zeros of the same shape as the corresponding gradients/parameters.
@@ -332,7 +332,7 @@ def initialize_velocity(parameters):
     v -- python dictionary containing the current velocity.
                     v['dW' + str(l)] = velocity of dWl
                     v['db' + str(l)] = velocity of dbl
-    """
+    '''
     
     L = len(parameters) // 2 # number of layers in the neural networks
     v = {}
@@ -396,7 +396,7 @@ print("v[\"db2\"] =\n" + str(v["db2"]))
 # GRADED FUNCTION: update_parameters_with_momentum
 
 def update_parameters_with_momentum(parameters, grads, v, beta, learning_rate):
-    """
+    '''
     Update parameters using Momentum
     
     Arguments:
@@ -415,7 +415,7 @@ def update_parameters_with_momentum(parameters, grads, v, beta, learning_rate):
     Returns:
     parameters -- python dictionary containing your updated parameters 
     v -- python dictionary containing your updated velocities
-    """
+    '''
 
     L = len(parameters) // 2 # number of layers in the neural networks
     
@@ -540,7 +540,7 @@ print("v[\"db2\"] = v" + str(v["db2"]))
 # GRADED FUNCTION: initialize_adam
 
 def initialize_adam(parameters) :
-    """
+    '''
     Initializes v and s as two python dictionaries with:
                 - keys: "dW1", "db1", ..., "dWL", "dbL" 
                 - values: numpy arrays of zeros of the same shape as the corresponding gradients/parameters.
@@ -558,7 +558,7 @@ def initialize_adam(parameters) :
                     s["dW" + str(l)] = ...
                     s["db" + str(l)] = ...
 
-    """
+    '''
     
     L = len(parameters) // 2 # number of layers in the neural networks
     v = {}
@@ -643,7 +643,7 @@ print("s[\"db2\"] = \n" + str(s["db2"]))
 
 def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01,
                                 beta1 = 0.9, beta2 = 0.999,  epsilon = 1e-8):
-    """
+    '''
     Update parameters using Adam
     
     Arguments:
@@ -664,7 +664,7 @@ def update_parameters_with_adam(parameters, grads, v, s, t, learning_rate = 0.01
     parameters -- python dictionary containing your updated parameters 
     v -- Adam variable, moving average of the first gradient, python dictionary
     s -- Adam variable, moving average of the squared gradient, python dictionary
-    """
+    '''
     
     L = len(parameters) // 2                 # number of layers in the neural networks
     v_corrected = {}                         # Initializing first moment estimate, python dictionary
@@ -794,7 +794,7 @@ train_X, train_Y = load_dataset()
 
 def model(X, Y, layers_dims, optimizer, learning_rate = 0.0007, mini_batch_size = 64, beta = 0.9,
           beta1 = 0.9, beta2 = 0.999,  epsilon = 1e-8, num_epochs = 10000, print_cost = True):
-    """
+    '''
     3-layer neural network model which can be run in different optimizer modes.
     
     Arguments:
@@ -812,7 +812,7 @@ def model(X, Y, layers_dims, optimizer, learning_rate = 0.0007, mini_batch_size 
 
     Returns:
     parameters -- python dictionary containing your updated parameters 
-    """
+    '''
 
     L = len(layers_dims)             # number of layers in the neural networks
     costs = []                       # to keep track of the cost

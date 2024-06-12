@@ -17,7 +17,7 @@ np.random.seed(1)
 
 # Function for initializing the parameters W and b for a deep network
 def initialize_parameters_deep(layer_dims):
-    """
+    '''
     Arguments:
     layer_dims -- python array (list) containing the dimensions of each layer in our network
 
@@ -25,7 +25,7 @@ def initialize_parameters_deep(layer_dims):
     parameters -- python dictionary containing your parameters "W1", "b1", ..., "WL", "bL":
                     Wl -- weight matrix of shape (layer_dims[l], layer_dims[l-1])
                     bl -- bias vector of shape (layer_dims[l], 1)
-    """
+    '''
 
     np.random.seed(1)
     parameters = {}
@@ -47,7 +47,7 @@ def initialize_parameters_deep(layer_dims):
 
 # Function for the linear part of forward propagation
 def linear_forward(A, W, b):
-    """
+    '''
     Implement the linear part of a layer's forward propagation.
 
     Arguments:
@@ -58,7 +58,7 @@ def linear_forward(A, W, b):
     Returns:
     Z -- the input of the activation function, also called pre-activation parameter
     cache -- a python tuple containing "A", "W" and "b" ; stored for computing the backward pass efficiently
-    """
+    '''
 
     Z = W @ A + b # Note that A refers to the inputs received from the previous layer,
                   # other than in the linear_activation_forward function, where A_prev
@@ -75,7 +75,7 @@ def linear_forward(A, W, b):
 
 # Function for the activation part of forward propagation
 def linear_activation_forward(A_prev, W, b, activation):
-    """
+    '''
     Implement the forward propagation for the LINEAR->ACTIVATION layer
 
     Arguments:
@@ -88,7 +88,7 @@ def linear_activation_forward(A_prev, W, b, activation):
     A -- the output of the activation function, also called the post-activation value
     cache -- a python tuple containing "linear_cache" and "activation_cache";
              stored for computing the backward pass efficiently
-    """
+    '''
 
     if activation == 'sigmoid':
         # Inputs: "A_prev, W, b". Outputs: "A, activation_cache".
@@ -113,7 +113,7 @@ def linear_activation_forward(A_prev, W, b, activation):
 
 # Function for forward propagation over all L layers
 def L_model_forward(X, parameters):
-    """
+    '''
     Implement forward propagation for the [LINEAR->RELU]*(L-1)->LINEAR->SIGMOID computation
 
     Arguments:
@@ -124,7 +124,7 @@ def L_model_forward(X, parameters):
     AL -- last post-activation value
     caches -- list of caches containing:
                 every cache of linear_activation_forward() (there are L-1 of them, indexed from 0 to L-1)
-    """
+    '''
 
     caches = []
     A = X
@@ -151,7 +151,7 @@ def L_model_forward(X, parameters):
 
 # Function for computing the cross entropy cost J
 def compute_cost(AL, Y):
-    """
+    '''
     Implement the cost function defined by equation (7).
 
     Arguments:
@@ -160,7 +160,7 @@ def compute_cost(AL, Y):
 
     Returns:
     cost -- cross-entropy cost
-    """
+    '''
 
     m = Y.shape[1]
 
@@ -173,7 +173,7 @@ def compute_cost(AL, Y):
 
 # Function for the linear part of backpropagation
 def linear_backward(dZ, cache):
-    """
+    '''
     Implement the linear portion of backward propagation for a single layer (layer l)
 
     Arguments:
@@ -184,7 +184,7 @@ def linear_backward(dZ, cache):
     dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev
     dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     db -- Gradient of the cost with respect to b (current layer l), same shape as b
-    """
+    '''
     A_prev, W, b = cache;
     m = A_prev.shape[1]
 
@@ -206,7 +206,7 @@ def linear_backward(dZ, cache):
 
 # Function for the activation part of backpropagation
 def linear_activation_backward(dA, cache, activation):
-    """
+    '''
     Implement the backward propagation for the LINEAR->ACTIVATION layer.
 
     Arguments:
@@ -218,7 +218,7 @@ def linear_activation_backward(dA, cache, activation):
     dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev
     dW -- Gradient of the cost with respect to W (current layer l), same shape as W
     db -- Gradient of the cost with respect to b (current layer l), same shape as b
-    """
+    '''
     linear_cache, activation_cache = cache
 
     if activation == "relu":
@@ -246,7 +246,7 @@ def linear_activation_backward(dA, cache, activation):
 
 # Function for backpropagation over all L layers
 def L_model_backward(AL, Y, caches):
-    """
+    '''
     Implement the backward propagation for the [LINEAR->RELU] * (L-1) -> LINEAR -> SIGMOID group
 
     Arguments:
@@ -261,7 +261,7 @@ def L_model_backward(AL, Y, caches):
              grads["dA" + str(l)] = ...
              grads["dW" + str(l)] = ...
              grads["db" + str(l)] = ...
-    """
+    '''
 
     grads = {}
     L = len(caches)
@@ -290,7 +290,7 @@ def L_model_backward(AL, Y, caches):
 
 # Function to update the parameters
 def update_parameters(parameters, grads, learning_rate):
-    """
+    '''
     Update parameters using gradient descent
 
     Arguments:
@@ -301,7 +301,7 @@ def update_parameters(parameters, grads, learning_rate):
     parameters -- python dictionary containing your updated parameters
                   parameters["W" + str(l)] = ...
                   parameters["b" + str(l)] = ...
-    """
+    '''
 
     L = len(parameters) // 2
 

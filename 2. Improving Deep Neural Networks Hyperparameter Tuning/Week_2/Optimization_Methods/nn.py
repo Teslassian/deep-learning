@@ -43,22 +43,6 @@ def relu(x):
 
 
 
-def load_params_and_grads(seed=1):
-    np.random.seed(seed)
-    W1 = np.random.randn(2,3)
-    b1 = np.random.randn(2,1)
-    W2 = np.random.randn(3,3)
-    b2 = np.random.randn(3,1)
-
-    dW1 = np.random.randn(2,3)
-    db1 = np.random.randn(2,1)
-    dW2 = np.random.randn(3,3)
-    db2 = np.random.randn(3,1)
-    
-    return W1, b1, W2, b2, dW1, db1, dW2, db2
-
-
-
 def initialize_parameters(layer_dims):
     '''
     Arguments:
@@ -93,6 +77,22 @@ def initialize_parameters(layer_dims):
 
 
 
+# def load_params_and_grads(seed=1):
+#     np.random.seed(seed)
+#     W1 = np.random.randn(2,3)
+#     b1 = np.random.randn(2,1)
+#     W2 = np.random.randn(3,3)
+#     b2 = np.random.randn(3,1)
+
+#     dW1 = np.random.randn(2,3)
+#     db1 = np.random.randn(2,1)
+#     dW2 = np.random.randn(3,3)
+#     db2 = np.random.randn(3,1)
+    
+#     return W1, b1, W2, b2, dW1, db1, dW2, db2
+
+
+
 def compute_cost(a3, Y):
     
     '''
@@ -103,16 +103,16 @@ def compute_cost(a3, Y):
         Y : 'true' labels vector, same shape as a3
     
     Returns:
-		cost - value of the cost function without dividing by number of training examples
+		cost : value of the cost function without dividing by number of training examples
     
     Note: 
     This is used with mini-batches, 
     so we'll first accumulate costs over an entire epoch 
     and then divide by the m training examples
     '''
-    
+
     logprobs = np.multiply(-np.log(a3),Y) + np.multiply(-np.log(1 - a3), 1 - Y)
-    cost_total =  np.sum(logprobs)
+    cost_total = np.sum(logprobs)
     
     return cost_total
 
@@ -170,7 +170,7 @@ def backward_propagation(X, Y, cache):
     Returns:
 		gradients : A dictionary with the gradients with respect to each parameter, activation and pre-activation variables
     '''
-    
+
     m = X.shape[1]
     (z1, a1, W1, b1, z2, a2, W2, b2, z3, a3, W3, b3) = cache
     
@@ -209,7 +209,7 @@ def predict(X, y, parameters):
     '''
     
     m = X.shape[1]
-    p = np.zeros((1,m), dtype = np.int)
+    p = np.zeros((1,m), dtype = int)
     
     # Forward propagation
     a3, caches = forward_propagation(X, parameters)
@@ -283,7 +283,7 @@ def predict_dec(parameters, X):
 
 
 def load_dataset():
-    np.random.seed(3)
+    np.random.seed(1)
     train_X, train_Y = sklearn.datasets.make_moons(n_samples=300, noise=0.2)
 
     # Visualize the data
